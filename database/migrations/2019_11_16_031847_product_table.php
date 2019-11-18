@@ -16,9 +16,11 @@ class ProductTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name',255);
+            $table->string('detail')->nullable();
             $table->string('img',255)->nullable();
-            $table->integer('type_id');
+            $table->bigInteger('type_id')->unsigned();
             $table->timestamps();
+            $table->foreign('type_id')->references('id')->on('products_types')->onDelete('cascade');
         });
     }
 

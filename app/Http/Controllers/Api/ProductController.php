@@ -5,34 +5,28 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use DB;
 
 class ProductController extends Controller
 {
-        /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    /* public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
-    } */
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        // $this->middleware('auth');
+        DB::enableQueryLog();
+    }
     public function index()
     {
-        $products = Product::all();
+        $products = Product::join('products_types', 'products.type_id', '=', 'products_types.id')->select(
+            'products.id',
+            'products.name',
+            'products.detail',
+            'products.img',
+            'products.created_at',
+            'products.type_id',
+            'products_types.type',
+            )->get();
         return response()->json($products);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -76,8 +70,25 @@ class ProductController extends Controller
               "message" => "Product not found"
             ], 404);
         } */
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        /* $product = Product::findOrFail($id);
+        return response()->json($product); */
+        if (Product::where('id', $id)->exists()) {
+            $product = Product::where('products.id', $id)->join('products_types', 'products.type_id', '=', 'products_types.id')->select(
+                'products.id',
+                'products.name',
+                'products.detail',
+                'products.img',
+                'products.created_at',
+                'products.type_id',
+                'products_types.type',
+                )->first();
+            return response()->json($product);
+        }
+        else{
+            return response()->json([
+                "message" => "Product not found"
+            ], 404);
+        }
     }
 
     /**

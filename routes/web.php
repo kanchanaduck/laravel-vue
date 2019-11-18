@@ -16,6 +16,8 @@
 });
  */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@main');
 
-Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/show', 'HomeController@index')->name('products.admin');
+
+Route::get('/excel', 'ExcelController@index')->name('excel');
