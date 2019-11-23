@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row album">
+    <div class="row">
       <div class="col-md-3" v-for="(item) in info" v-bind:key="item.id">
         <div class="card mb-4 shadow-sm">
           <div class="card-body">
@@ -18,7 +18,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" :v-model="name" @click="persist"><font-awesome-icon fas icon="cart-plus" /> Add to cart</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="addTocart(item)"><font-awesome-icon fas icon="cart-plus" /> Add to cart</button>
               </div>
               <small class="text-muted">9 mins</small>
             </div>
@@ -27,6 +27,7 @@
       </div>
     </div><!--/.row-->
   </div>
+  
 </template>
 
 <script>
@@ -35,21 +36,19 @@
       data () {
         return {
           info: null,
-          name: ''
+          cart: [],
         }
       },
       mounted() {
-        if (localStorage.name) {
-          this.name = localStorage.name;
-        }
         axios
           .get('api/products')
           .then(response => (this.info = response.data))
       },
       methods: {
-        persist() {
-          localStorage.name = this.name;
-          console.log('now pretend I did more stuff...');
+        addTocart(item) {
+          this.cart.push(item)
+          console.log(this.cart);
+          
         }
       }
     }

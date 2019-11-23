@@ -16,10 +16,24 @@
         body {
             padding-top: 5rem;
         }
+        .float{
+          position:fixed;
+          width:60px;
+          height:60px;
+          bottom:40px;
+          right:40px;
+          background-color:#0C9;
+          color:#FFF;
+          border-radius:50px;
+          text-align:center;
+          box-shadow: 2px 2px 3px #999;
+          font-size: 22px;
+          padding-top: 20px;
+        }
         </style>
     </head>
     <body>
-
+      <div id="app">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #4fc08d;">
             <a class="navbar-brand" href="#">Money Shop</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +42,17 @@
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                {{-- <li class="nav-item active">
+                  <a class="nav-link" href=".">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./show">Admin <span class="sr-only">(current)</span></a>
+                </li> --}}
+                <li class="nav-item">
+                  <router-link to="/" class="nav-link">Product</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/Admin" class="nav-link">Admin</router-link>
                 </li>
                 {{-- <li class="nav-item">
                   <a class="nav-link" href="#">Link</a>
@@ -51,11 +74,11 @@
               </ul>
               
     		<ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                   {{--  <li class="nav-item active">
                         <a class="nav-link" href="javascript:;">
                             <i class="fas fa-user-circle"></i> Login
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item active">
                         <a class="nav-link" href="http://intranet2-hitt/intranet_program/HR/RiskAssessmentSystem/Authentication/Logout"><i
                                 class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
@@ -63,13 +86,11 @@
                 </ul>
             </div>
         </nav>
-
+        <div class="float"><font-awesome-icon fas icon="cart-plus" /></div>
         <main role="main" class="container-fluid">
-            <div id="app">
-                @yield('content')
-            </div>
+            <router-view></router-view>
         </main>
-
+        </div>
         <script src="js/app.js"></script>
     </body>
 </html>

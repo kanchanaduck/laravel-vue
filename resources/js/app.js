@@ -10,9 +10,10 @@ window.Vue = require('vue');
 
 import Vue from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,11 +24,20 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+let routes = [
+    { path: '/', component: require('./components/ProductShow.vue').default},
+    { path: '/Admin', component: require('./components/Product.vue').default },
+    /* { path: '/users', component: require('./components/Users.vue') },
+    { path: '/profile', component: require('./components/Profile.vue') }, */
+    { path: '*', component: require('./components/Product.vue') }
+  ]
+
+const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
 library.add(fas)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('product', require('./components/Product.vue').default);
-Vue.component('show', require('./components/ProductShow.vue').default);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 /**
@@ -40,4 +50,5 @@ Vue.config.productionTip = false
 
 const app = new Vue({
     el: '#app',
+    router,
 });

@@ -18,6 +18,6 @@
 
 Route::get('/', 'HomeController@main');
 
-Route::get('/show', 'HomeController@index')->name('products.admin');
+// Route::get('/show', 'HomeController@index')->name('products.admin');
 
-Route::get('/excel', 'ExcelController@index')->name('excel');
+// Route::get('/excel', 'ExcelController@index')->name('excel');
