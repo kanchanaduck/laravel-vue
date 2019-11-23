@@ -23,7 +23,7 @@ class ProductController extends Controller
             'products.img',
             'products.created_at',
             'products.type_id',
-            'products_types.type',
+            'products_types.type'
             )->get();
         return response()->json($products);
     }
@@ -80,7 +80,7 @@ class ProductController extends Controller
                 'products.img',
                 'products.created_at',
                 'products.type_id',
-                'products_types.type',
+                'products_types.type'
                 )->first();
             return response()->json($product);
         }

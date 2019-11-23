@@ -11667,7 +11667,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   data: function data() {
@@ -47174,27 +47173,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-7 align-middle" }, [
-                  _c("h4", [_vm._v(_vm._s(item.name))]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.name,
-                        expression: "name"
-                      }
-                    ],
-                    domProps: { value: _vm.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.name = $event.target.value
-                      }
-                    }
-                  })
+                  _c("h4", [_vm._v(_vm._s(item.name))])
                 ]),
                 _vm._v(" "),
                 _vm._m(0, true)
@@ -47225,7 +47204,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-sm btn-outline-secondary",
-                        attrs: { type: "button" },
+                        attrs: { type: "button", "v-model": _vm.name },
                         on: { click: _vm.persist }
                       },
                       [
@@ -59730,8 +59709,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel-project\lara-vue\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-project\lara-vue\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\laravel-vue\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
